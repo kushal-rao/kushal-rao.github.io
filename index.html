@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Portfolio</title>
+    <title>Kushal Rao - Portfolio</title>
     <style>
         /* General Styles */
         body {
@@ -11,53 +11,127 @@
             line-height: 1.6;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
+            background-color: #0f0f0f;
+            color: #e0e0e0;
         }
 
+        /* Banner Header with Background Image */
         header {
-            background: #333;
+            position: relative;
+            height: 70vh;
+            background-image: url('Pictures/Skyline3.jpg'); /* Replace with your banner image */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             color: #fff;
-            padding: 1rem 0;
             text-align: center;
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
+        /* Dark overlay for better text readability */
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
         }
 
-        header p {
-            font-size: 1.2rem;
+        /* All header content above the overlay */
+        header > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Navigation */
+        nav {
+            position: absolute;
+            top: 30px;
+            width: 100%;
+            z-index: 3;
         }
 
         nav ul {
             padding: 0;
             list-style: none;
             text-align: center;
+            margin: 0;
         }
 
         nav ul li {
-            display: inline;
-            margin: 0 15px;
+            display: inline-block;
+            margin: 0 25px;
         }
 
         nav ul li a {
             color: #fff;
             text-decoration: none;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 5px;
         }
 
         nav ul li a:hover {
-            text-decoration: underline;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
         }
 
+        /* Main title */
+        header h1 {
+            margin: 0;
+            font-size: 3rem;
+            font-weight: bold;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
+            margin-bottom: 1rem;
+        }
+
+        /* Contact info in header */
+        .header-contact {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+            z-index: 3;
+        }
+
+        .contact-item {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Main content */
         main {
-            max-width: 960px;
+            max-width: 1365px;
             margin: 20px auto;
             padding: 0 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            background-color: #1a1a1a;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            border-radius: 8px;
         }
 
         section {
@@ -67,7 +141,7 @@
         h2 {
             text-align: center;
             margin-bottom: 1.5rem;
-            color: #333;
+            color: #e0e0e0;
         }
 
         h2 i { /* For Font Awesome Icons */
@@ -77,7 +151,7 @@
         hr {
             border: 0;
             height: 1px;
-            background: #ddd;
+            background: #444;
             margin: 2rem 0;
         }
 
@@ -90,115 +164,226 @@
 
         .profile-pic {
             width: 150px;
-            height: 150px;
-            border-radius: 50%;
+            height: 250px;
+            border-radius: 10%;
             object-fit: cover;
-            border: 3px solid #333;
+            border: 3px solid #666;
         }
 
         /* Projects Section */
         .project-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 40px;
+            padding: 0 20px;
         }
 
         .project-card {
-            background: #f9f9f9;
-            border: 1px solid #ddd;
+            background: #2a2a2a;
+            border: 1px solid #444;
             border-radius: 8px;
-            padding: 1.5rem;
+            padding: 0;
             text-align: center;
             transition: transform 0.3s ease;
+            overflow: hidden;
         }
 
         .project-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.4);
         }
 
-        .project-card img { /* For project thumbnails */
-            max-width: 100%;
-            height: auto;
-            border-radius: 4px;
-            margin-bottom: 1rem;
+        /* Individual project image container */
+        .project-image-container {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
         }
 
-        .project-card h3 {
-            margin-top: 0;
-            color: #333;
+        .project-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .project-image-container:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Overlay for hover effects */
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .project-image-container:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-overlay h4 {
+            margin: 0 0 10px 0;
+            color: #fff;
+            font-size: 1.1rem;
+        }
+
+        .project-overlay p {
+            margin: 0 0 15px 0;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            text-align: center;
         }
 
         .project-links {
-            margin-top: 1rem;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .btn {
             display: inline-block;
-            background: #333;
+            background: #444;
             color: #fff;
-            padding: 0.7rem 1.3rem;
+            padding: 8px 16px;
             text-decoration: none;
             border-radius: 5px;
-            margin: 5px;
             transition: background-color 0.3s ease;
+            font-size: 0.9rem;
         }
 
         .btn:hover {
-            background: #555;
+            background: #666;
         }
 
-        .interactive-element {
-            margin-top: 1rem;
-            padding: 0.5rem;
-            background-color: #e9e9e9;
-            border-radius: 4px;
+        /* Project title below image */
+        .project-title {
+            padding: 15px 20px;
+            margin: 0;
+            color: #e0e0e0;
+            font-size: 1.2rem;
+            font-weight: 600;
         }
 
-        .interactive-element img { /* For images inside interactive elements */
-            max-width: 100%;
-            height: auto;
-            border-radius: 4px;
-        }
-
-        .project-gallery { /* For the simple "See More Images" example */
+        /* Resume & Contact Combined Section */
+        .resume-contact-container {
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 10px;
-            justify-content: center; /* Center images if they don't fill the row */
+            gap: 40px;
+            align-items: flex-start;
+            justify-content: space-between;
         }
 
-        .project-gallery img {
-            max-width: 100px;
-            height: auto;
-            border: 1px solid #ccc;
-            cursor: pointer;
+        .resume-section, .contact-section {
+            flex: 1;
+            padding: 20px;
+            background: #2a2a2a;
+            border-radius: 8px;
+            border: 1px solid #444;
         }
 
-
-        /* Contact Section */
-        #contact ul {
-            list-style: none;
-            padding: 0;
+        .resume-section h3, .contact-section h3 {
+            margin-top: 0;
+            color: #e0e0e0;
             text-align: center;
         }
 
-        #contact ul li {
-            margin-bottom: 0.5rem;
+        .resume-section p, .contact-section p {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .resume-section {
+            text-align: center;
+        }
+
+        .contact-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-links li {
+            margin-bottom: 0;
+            width: 100%;
+            max-width: 250px;
+        }
+
+        .contact-links li a {
+            display: block;
+            background: #444;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 12px 20px;
+            border-radius: 6px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid #444;
+            font-weight: 500;
+        }
+
+        .contact-links li a:hover {
+            background: #555;
+            border-color: #666;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
 
         /* Footer */
         footer {
             text-align: center;
             padding: 1rem;
-            background: #333;
-            color: #fff;
+            background: #0a0a0a;
+            color: #ccc;
             margin-top: 2rem;
         }
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
+            header {
+                height: 40vh;
+                background-attachment: scroll;
+            }
+
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            nav ul li {
+                display: block;
+                margin: 10px 0;
+            }
+
+            nav ul li a {
+                font-size: 1rem;
+            }
+
+            .header-contact {
+                position: static;
+                transform: none;
+                margin-top: 2rem;
+                flex-direction: column;
+                gap: 15px;
+            }
+
             .about-content {
                 flex-direction: column;
                 text-align: center;
@@ -207,9 +392,47 @@
             .profile-pic {
                 margin-bottom: 1rem;
             }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .resume-contact-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                top: 15px;
+            }
+
             nav ul li {
-                display: block; /* Stack nav links on small screens */
-                margin: 10px 0;
+                margin: 5px 0;
+            }
+
+            nav ul li a {
+                padding: 8px 12px;
+                font-size: 0.9rem;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .contact-item {
+                font-size: 0.9rem;
+                padding: 6px 10px;
+            }
+
+            .project-overlay {
+                padding: 15px;
+            }
+
+            .project-overlay p {
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -220,17 +443,23 @@
             <ul>
                 <li><a href="#about">About Me</a></li>
                 <li><a href="#projects">Projects</a></li>
-                <li><a href="#resume">Resume</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#resume">Resume & Contact</a></li>
             </ul>
         </nav>
         <h1>Kushal Rao</h1>
+
+        <div class="header-contact">
+            <a href="mailto:krao9@wisc.edu" class="contact-item">📧 krao9@wisc.edu</a>
+            <a href="https://linkedin.com/in/kushal-rao-a9433232b/" target="_blank" class="contact-item">💼 LinkedIn</a>
+            <a href="https://github.com/JuliaORNL/JACC.jl" target="_blank" class="contact-item">💻 GitHub</a>
+        </div>
     </header>
 
     <main>
         <section id="about">
-            <h2>About Me</h2> <div class="about-content">
-                <img src="Pictures/ProfilePic.JPG" alt="Kushal Rao" class="profile-pic">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <img src="Pictures/Headshot2.png" alt="Kushal Rao" class="profile-pic">
                 <p>Write a bit about yourself here. Your passions, skills, what you're looking for, etc. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
             </div>
         </section>
@@ -240,63 +469,80 @@
         <section id="projects">
             <h2>Projects</h2>
             <div class="project-grid">
+                <!-- Project 1 -->
                 <div class="project-card">
-                    <img src="Pictures/nba-mvp-trophy.jpg" alt="Project 1 Thumbnail" id="project1-main-image">
-                    <h3>Project Title 1</h3>
-                    <p>Short description of your project. What technologies did you use? What problem does it solve?</p>
-                    <button onclick="toggleGallery('project1-gallery')">Show/Hide More Images</button>
-                    <div id="project1-gallery" class="project-gallery" style="display:none;">
-                        <img src="Pictures/mvp1.jpeg" alt="Project 1 Detail 1" onclick="setMainImage('project1-main-image', 'Pictures/mvp1.jpg')">
-                        <img src="Pictures/mvp2.jpeg" alt="Project 1 Detail 2" onclick="setMainImage('project1-main-image', 'Pictures/mvp2.jpg')">
-                        <img src="Pictures/mvp3.jpg" alt="Project 1 Detail 3" onclick="setMainImage('project1-main-image', 'Pictures/mvp3.jpg')">
+                    <div class="project-image-container">
+                        <img src="Pictures/nba-mvp-trophy.jpg" alt="NBA MVP Analysis">
+                        <div class="project-overlay">
+                            <h4>Project Description</h4>
+                            <p>An in-depth analysis of NBA MVP statistics and trends. This project explores historical data to predict future MVP candidates using machine learning algorithms and data visualization techniques.</p>
+                            <div class="project-links">
+                                <a href="https://www.google.com/search?q=mvp+nba+" target="_blank" class="btn">View Live</a>
+                                <a href="https://www.nba.com/awards/2025" target="_blank" class="btn">View Code</a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="project-links">
-                        <a href="https://www.google.com/search?q=mvp+nba+&sca_esv=68ef1fee316db273&rlz=1C5CHFA_enUS983US983&sxsrf=AE3TifOR5g7snT7Lt6YVevyiADFH6xbsxA%3A1748738900381&ei=VKM7aNqLF6mrptQPxYrb8Q8&ved=0ahUKEwjahdmHgM-NAxWplYkEHUXFNv4Q4dUDCBA&uact=5&oq=mvp+nba+&gs_lp=Egxnd3Mtd2l6LXNlcnAiCG12cCBuYmEgMgQQIxgnMg0QABiABBixAxgUGIcCMgsQABiABBiRAhiKBTILEAAYgAQYkQIYigUyCxAAGIAEGJECGIoFMgsQABiABBiRAhiKBTIKEAAYgAQYFBiHAjIFEAAYgAQyBRAAGIAEMgUQABiABEjbElBMWJ8KcAB4ApABAJgBwQigAZsUqgEHNS0xLjEuMbgBA8gBAPgBAZgCAqAClwXCAgQQABhHmAMAiAYBkAYIkgcFMS41LTGgB6kUsgcDNS0xuAeKBcIHBTMtMS4xyAch&sclient=gws-wiz-serp" target="_blank" class="btn">View Live</a>
-                        <a href="https://www.nba.com/awards/2025" target="_blank" class="btn">View Code</a>
-                    </div>
+                    <h3 class="project-title">NBA MVP Analysis</h3>
                 </div>
-                <!--
+
+                <!-- Project 2 -->
                 <div class="project-card">
-                    <img src="images/project2-thumbnail.jpg" alt="Project 2 Thumbnail" id="project2-main-image">
-                    <h3>Project Title 2</h3>
-                    <p>Another cool project description. Focus on the impact and your role.</p>
-                    <button onclick="toggleGallery('project2-gallery')">Show/Hide More Images</button>
-                    <div id="project2-gallery" class="project-gallery" style="display:none;">
-                        <img src="images/project2-detail1.jpg" alt="Project 2 Detail 1" onclick="setMainImage('project2-main-image', 'images/project2-detail1.jpg')">
-                        <img src="images/project2-detail2.jpg" alt="Project 2 Detail 2" onclick="setMainImage('project2-main-image', 'images/project2-detail2.jpg')">
+                    <div class="project-image-container">
+                        <img src="Pictures/mvp1.jpeg" alt="Sports Analytics Dashboard">
+                        <div class="project-overlay">
+                            <h4>Project Description</h4>
+                            <p>A comprehensive sports analytics dashboard featuring real-time statistics, player comparisons, and performance metrics. Built with React and D3.js for interactive data visualization.</p>
+                            <div class="project-links">
+                                <a href="#" target="_blank" class="btn">View Live</a>
+                                <a href="#" target="_blank" class="btn">View Code</a>
+                            </div>
+                        </div>
                     </div>
-                     <div class="project-links">
-                        <a href="your-project-live-link-2" target="_blank" class="btn">View Live</a>
-                        <a href="your-project-github-repo-2" target="_blank" class="btn">View Code</a>
+                    <h3 class="project-title">Sports Analytics Dashboard</h3>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-image-container">
+                        <img src="Pictures/mvp2.jpeg" alt="Basketball Stats Tracker">
+                        <div class="project-overlay">
+                            <h4>Project Description</h4>
+                            <p>A mobile-responsive web application for tracking basketball statistics. Features include game tracking, player profiles, season analytics, and team performance comparisons.</p>
+                            <div class="project-links">
+                                <a href="#" target="_blank" class="btn">View Live</a>
+                                <a href="#" target="_blank" class="btn">View Code</a>
+                            </div>
+                        </div>
                     </div>
+                    <h3 class="project-title">Basketball Stats Tracker</h3>
                 </div>
-                -- Add more project cards as needed -->
-                </div>
+            </div>
         </section>
 
         <hr>
 
         <section id="resume">
-            <h2>Resume</h2>
-            <p>You can view and download my resume here.</p>
-            <a href="Pictures/Kushal Rao Resume 5_10_2025.pdf" target="_blank" class="btn">Download Resume (PDF)</a>
-        </section>
-
-        <hr>
-
-        <section id="contact">
-            <h2>Contact</h2>
-            <p>Feel free to reach out!</p>
-            <ul>
-                <li>Email: <a href="mailto:krao9@wisc.edu">your.email@example.com</a></li>
-                <li>LinkedIn: <a href="linkedin.com/in/kushal-rao-a9433232b/" target="_blank">Your LinkedIn Profile</a></li>
-                <li>GitHub: <a href="https://github.com/JuliaORNL/JACC.jl" target="_blank">Your GitHub Profile</a></li>
-            </ul>
+            <h2>Resume & Contact</h2>
+            <div class="resume-contact-container">
+                <div class="resume-section">
+                    <h3>Resume</h3>
+                    <p>You can view and download my resume here.</p>
+                    <a href="Pictures/Kushal Rao Resume 5_10_2025.pdf" target="_blank" class="btn">Download Resume (PDF)</a>
+                </div>
+                <div class="contact-section">
+                    <h3>Contact Me</h3>
+                    <ul class="contact-links">
+                        <li><a href="mailto:krao9@wisc.edu">krao9@wisc.edu</a></li>
+                        <li><a href="https://linkedin.com/in/kushal-rao-a9433232b/" target="_blank">LinkedIn Profile</a></li>
+                        <li><a href="https://github.com/JuliaORNL/JACC.jl" target="_blank">GitHub Profile</a></li>
+                    </ul>
+                </div>
+            </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 Your Name. All rights reserved.</p>
+        <p>&copy; 2025 Kushal Rao. All rights reserved.</p>
     </footer>
 
     <script>
@@ -321,45 +567,6 @@
                 });
             });
         });
-
-        // Function to toggle the display of a project image gallery
-        function toggleGallery(galleryId) {
-            const gallery = document.getElementById(galleryId);
-            if (gallery) {
-                gallery.style.display = gallery.style.display === 'none' ? 'flex' : 'none';
-            }
-        }
-
-        // Function to change the main project image when a thumbnail in the gallery is clicked
-        function setMainImage(mainImageId, newImageSrc) {
-            const mainImage = document.getElementById(mainImageId);
-            if (mainImage) {
-                mainImage.src = newImageSrc;
-            }
-        }
-
-        // Example: A simple slideshow for a specific project (more advanced)
-        /*
-        // Make sure you have an <img id="project1-slideshow" src="initial-image.jpg"> in your HTML
-        const project1Images = [
-            'images/project1/slide1.jpg',
-            'images/project1/slide2.jpg',
-            'images/project1/slide3.jpg'
-        ];
-        let currentProject1ImageIndex = 0;
-        const project1SlideshowElement = document.getElementById('project1-slideshow');
-
-        function changeProject1Image() {
-            if (project1SlideshowElement) {
-                currentProject1ImageIndex = (currentProject1ImageIndex + 1) % project1Images.length;
-                project1SlideshowElement.src = project1Images[currentProject1ImageIndex];
-            }
-        }
-
-        if (project1SlideshowElement) {
-            // setInterval(changeProject1Image, 3000); // Change image every 3 seconds
-        }
-        */
     </script>
 </body>
 </html>
